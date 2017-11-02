@@ -1,0 +1,17 @@
+{
+  "name": "rokk3rlabs",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "sivamanikandan <sivamanikandan@railsfactory.org>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/railsfactory-sivamanikandan/rokk3rlabs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
