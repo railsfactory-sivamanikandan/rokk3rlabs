@@ -8,22 +8,34 @@
       console.log('AppController started');
     });
 
-    function AppController () {
+    function AppController (DashboardService) {
       var $ctrl = this;
 
       $ctrl.$onInit = _onInit;
 
       function _onInit() {
+        $ctrl.data1 = []
+        $ctrl.data2 = []
+        $ctrl.data3 = []
+        $ctrl.labels = []
+
+        angular.forEach(DashboardService.getData(),function(value,key){
+          $ctrl.data1.push(value.data.count);
+          $ctrl.data2.push(value.data.speed);
+          $ctrl.data3.push(value.data.time);
+          $ctrl.labels.push(value.zoneId);
+        });
+
         $ctrl.chart = {
-          labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          labels: $ctrl.labels,
           datasets: [
           {
             fillColor: "#fff",
             strokeColor: "#fff",
             pointColor: "#fff",
             pointStrokeColor: "#e67e22",
-            data: [4, 3, 5, 4, 6,7,10],
-            fill:false,
+            data: $ctrl.data1,
+            fill:true,
             backgroundColor:"#fff",
             borderColor: '#ef0000',
           },
@@ -32,8 +44,8 @@
             strokeColor: "#fff",
             pointColor: "#fff",
             pointStrokeColor: "#e67e22",
-            data: [5,4,5,6,8,9,4],
-            fill:false,
+            data: $ctrl.data2,
+            fill:true,
             backgroundColor:"#fff",
             borderColor: '#5c9df5',
           },
@@ -42,22 +54,51 @@
             strokeColor: "#fff",
             pointColor: "#fff",
             pointStrokeColor: "#e67e22",
-            data: [5,7,11,2,33,4,12],
-            fill:false,
+            data: $ctrl.data3,
+            fill:true,
             backgroundColor:"#fff",
             borderColor: '#ef0000',
           }
           ]
         }
         var ctx = document.getElementById("dvCanvas").getContext('2d');
+
         var myChart = new Chart(ctx, {
           type: 'line',
           data: $ctrl.chart ,
           options: {
             responsive: false,
-             angleLineColor : false,
+            angleLineColor : false,
             pointDot : true,
             datasetFill : true
+          }
+        });
+
+        var ctx1 = document.getElementById("dvCanvas1").getContext('2d');
+
+        var myChart1 = new Chart(ctx1, {
+          type: 'bar',
+          data: $ctrl.chart ,
+          options: {
+            responsive: false,
+             angleLineColor : false,
+            pointDot : true,
+            datasetFill : true,
+            fill : true
+          }
+        });
+
+        var ctx2 = document.getElementById("dvCanvas2").getContext('2d');
+
+        var myChart2 = new Chart(ctx2, {
+          type: 'doughnut',
+          data: $ctrl.chart ,
+          options: {
+            responsive: false,
+             angleLineColor : false,
+            pointDot : true,
+            datasetFill : true,
+            fill : true
           }
         });
       }
