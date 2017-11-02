@@ -15,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/railsfactory-sivamanikandan/rokk3rlabs/issues"
   },
-  "homepage": "https://github.com/railsfactory-sivamanikandan/rokk3rlabs#readme"
+  "homepage": "https://github.com/railsfactory-sivamanikandan/rokk3rlabs#readme",
+  "devDependencies": {
+    "connect-modrewrite": "^0.8.2",
+    "grunt": "^0.4.5",
+    "grunt-contrib-connect": "1.0.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "jit-grunt": "^0.9.1",
+    "time-grunt": "^1.0.0"
+  },
+  "dependencies": {
+    "serve-static": "^1.11.1"
+  }
 }
